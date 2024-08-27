@@ -96,6 +96,19 @@
                 font-size: 1.5rem; /* Menyesuaikan ukuran font untuk layar kecil */
             }
         }
+
+        .audio-controls {
+            position:center;
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .audio-controls img {
+            width: 40px; /* Ukuran logo */
+            height: 40px; /* Ukuran logo */
+            margin-top: 10px; /* Jarak antara logo dan tombol */
+            margin-top: -1110px;
+        }
     </style>
 </head>
 <body>
@@ -110,8 +123,15 @@
             <div class="typing-text sequence">4. Wajib Follow akun Instagram W.Runk.id</div>
             <div class="typing-text sequence">5. Vocher Tidak berlaku untuk pembelian paket</div>
             <div class="typing-text sequence">6. Vocher dapat ditukar dengan 1 produk makanan saja</div>
-        </div>a
+         <!-- Elemen audio untuk musik -->
+    <audio id="background-music" src="samsul.mp3" preload="auto" loop></audio>
+
+    <div class="audio-controls">
+        <img src="pngwing.com.png" alt="Logo Music">
+        <button onclick="toggleMusic()">Play/Pause</button>
     </div>
+
+    
 
     <script>
         // Function to trigger typing animation with auto width
@@ -133,6 +153,7 @@
         const paragraph = document.getElementById('paragraph');
         const sequences = document.querySelectorAll('.sequence');
         const linkText = document.getElementById('link-text');
+        const audio = document.getElementById('background-music');
         
         const titleDuration = title.textContent.length * 0.1; // 0.1 seconds per character
         const paragraphDuration = paragraph.textContent.length * 0.1; // 0.1 seconds per character
@@ -154,6 +175,17 @@
         const linkTextDuration = linkText.textContent.length * 0.1; // 0.1 seconds per character
         const linkTextDelay = titleDuration * 1000 + paragraphDuration * 1000 + 2000 + (sequences.length * 1000) + 2000; // Total delay for link text
         startTyping(linkText, linkTextDelay, linkTextDuration);
+        // Function to toggle audio playback
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+        
+        // Optionally, start playing the music automatically
+        audio.play();
     </script>
 </body>
 </html>
