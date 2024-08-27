@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Effect - Wrunk PSG</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "erkeleyMono_1e0bf4, __berkeleyMono_Fallback_1e0bf4; w", Courier, monospace;
+            background-color: #000000; /* Background hitam */
+            color: #ffffff; /* Warna teks putih */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: right; 
+            position: relative;
+        }
+
+        .typing-container {
+            position: relative;
+        }
+
+        .typing-container img {
+            position: absolute;
+            top: -100px; /* Pindahkan gambar lebih ke atas dengan mengurangi nilai ini */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px; /* Sesuaikan ukuran gambar */
+            height: auto; /* Menjaga rasio gambar */
+        }
+
+        .typing-container h1 {
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #ffffff; /* Garis kedip di akhir teks */
+            font-size: 24px;
+            animation: typing 4s steps(40, end) forwards, blink-cursor 1s step-end infinite;
+            width: 0;
+            text-shadow: 0 0 0 #ffffff; /* Efek glow awalnya tidak terlihat */
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-cursor {
+            from { border-right-color: #ffffff; }
+            to { border-right-color: transparent; }
+        }
+
+        /* Menampilkan seluruh teks setelah efek mengetik selesai dengan glow */
+        .typing-container h1.full-text {
+            width: 100%;
+            border-right: none; /* Menghilangkan kursor */
+            text-shadow: 0 0 10px #ffffff; /* Efek glow pada teks */
+        }
+    </style>
+</head>
+<body>
+    <div class="typing-container">
+        <img src="LOGO WRUNK
+
+        png" alt="Gambar">
+        <top : -500000000px> </top>
+        <h1 id="typing-text">Selamat datang di syarat dan ketentuan Wrunk PSG</h1>
+    </div>
+
+    <script>
+        const typingText = document.getElementById('typing-text');
+
+        // Menampilkan seluruh teks dengan efek glow setelah animasi mengetik selesai
+        typingText.addEventListener('animationend', (event) => {
+            if (event.animationName === "typing") {
+                // Setelah animasi mengetik selesai, tambahkan efek glow
+                typingText.classList.add('full-text');
+            }
+        });
+    </script>
+</body>
+</html>
