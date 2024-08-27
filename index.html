@@ -3,43 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Typing Effect - Wrunk PSG</title>
+    <title>Typing Effect - W-Runk Psugihan</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Berkeley+Mono:wght@400;700&display=swap');
+
         body {
             margin: 0;
             padding: 0;
-            font-family: "erkeleyMono_1e0bf4, __berkeleyMono_Fallback_1e0bf4; w", Courier, monospace;
+            font-family: 'Berkeley Mono', Courier, monospace;
             background-color: #000000; /* Background hitam */
             color: #ffffff; /* Warna teks putih */
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            text-align: right; 
-            position: relative;
+            text-align: center;
+            overflow: hidden; /* Menyembunyikan overflow jika ada */
+            position: relative; /* Untuk positioning teks link di pojok kanan bawah */
         }
 
-        .typing-container {
-            position: relative;
+        .container {
+            width: 100%;
+            max-width: 800px;
+            position: relative; /* Memastikan anak-anak diposisikan relatif terhadap ini */
         }
 
-        .typing-container img {
-            position: absolute;
-            top: -100px; /* Pindahkan gambar lebih ke atas dengan mengurangi nilai ini */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px; /* Sesuaikan ukuran gambar */
-            height: auto; /* Menjaga rasio gambar */
-        }
-
-        .typing-container h1 {
+        .typing-text, .sequence, .link-text {
             white-space: nowrap;
             overflow: hidden;
-            border-right: 2px solid #ffffff; /* Garis kedip di akhir teks */
-            font-size: 24px;
-            animation: typing 4s steps(40, end) forwards, blink-cursor 1s step-end infinite;
-            width: 0;
-            text-shadow: 0 0 0 #ffffff; /* Efek glow awalnya tidak terlihat */
+            font-size: 2rem; /* Ukuran font */
+            margin: 20px 0;
+            text-shadow: 0 0 10px #ffffff; /* Efek glow */
+        }
+
+        .paragraph {
+            font-size: 1.2rem; /* Ukuran font untuk paragraf */
+            white-space: normal;
+            width: fit-content; /* Menyesuaikan lebar dengan teks */
+            display: inline-block; /* Menyusun paragraf sebagai blok */
+            overflow: hidden; /* Menyembunyikan overflow jika ada */
+            opacity: 0; /* Awalnya teks tidak terlihat */
+        }
+
+        .sequence {
+            font-size: 1rem; /* Ukuran font untuk teks 1-5 */
+        }
+
+        .link-text {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 1rem; /* Ukuran font untuk link */
+            margin: 0;
         }
 
         @keyframes typing {
@@ -48,37 +64,96 @@
         }
 
         @keyframes blink-cursor {
-            from { border-right-color: #ffffff; }
-            to { border-right-color: transparent; }
+            50% { border-right-color: transparent; }
         }
 
-        /* Menampilkan seluruh teks setelah efek mengetik selesai dengan glow */
-        .typing-container h1.full-text {
+        .typing-text {
+            border-right: 2px solid #ffffff; /* Garis kedip di akhir teks */
+            width: 0; /* Awalnya width 0 */
+            opacity: 0; /* Awalnya teks tidak terlihat */
+            animation: blink-cursor 0.65s step-end infinite;
+        }
+
+        .typing-text.typing {
+            animation: typing 1.5s steps(40, end) forwards;
+        }
+
+        .typing-text.done {
+            border-right: none; /* Menghilangkan kursor kedip setelah selesai */
+            animation: none; /* Menghentikan animasi setelah selesai */
+            opacity: 1; /* Teks terlihat setelah selesai */
+        }
+
+        .text-left {
+            text-align: left;
+            display: block;
             width: 100%;
-            border-right: none; /* Menghilangkan kursor */
-            text-shadow: 0 0 10px #ffffff; /* Efek glow pada teks */
+        }
+
+
+        @media (max-width: 600px) {
+            .typing-text, .paragraph, .sequence, .link-text {
+                font-size: 1.5rem; /* Menyesuaikan ukuran font untuk layar kecil */
+            }
         }
     </style>
 </head>
 <body>
-    <div class="typing-container">
-        <img src="LOGO WRUNK
 
-        png" alt="Gambar">
-        <top : -500000000px> </top>
-        <h1 id="typing-text">Selamat datang di syarat dan ketentuan Wrunk PSG</h1>
+    <div class="container">
+        <h1 id="title" class="typing-text">Selamat datang di W-Runk Psugihan</h1>
+        <p id="paragraph" class="paragraph">Ini adalah paragraf yang menjelaskan lebih lanjut tentang W-Runk Psugihan.</p>
+        <div id="sequence-container" class="text-left">
+            <div class="typing-text sequence">1. Jika voucher ditukar pada 23 September 2024 calim diskon 50%</div>
+            <div class="typing-text sequence">2. Jika voucher ditukar pada 24 - 26 September 2024 calim diskon 20%</div>
+            <div class="typing-text sequence">3. Jika voucher ditukar pada 27 - 30 September 2024 calim diskon 10%</div>
+            <div class="typing-text sequence">4. Wajib Follow akun Instagram W.Runk.id</div>
+            <div class="typing-text sequence">5. Vocher Tidak berlaku untuk pembelian paket</div>
+            <div class="typing-text sequence">6. Vocher dapat ditukar dengan 1 produk makanan saja</div>
+        </div>a
     </div>
 
     <script>
-        const typingText = document.getElementById('typing-text');
+        // Function to trigger typing animation with auto width
+        function startTyping(textElement, delay, duration) {
+            setTimeout(() => {
+                textElement.style.opacity = 1; // Show the text
+                textElement.style.width = 'auto'; // Ensure width adjusts to content
+                textElement.style.animation = `typing ${duration}s steps(${textElement.textContent.length}, end) forwards, blink-cursor 0.75s step-end infinite`;
+                
+                // Remove the blinking cursor after typing animation is done
+                textElement.addEventListener('animationend', () => {
+                    textElement.classList.add('done'); // Remove cursor and stop animation
+                });
+            }, delay);
+        }
 
-        // Menampilkan seluruh teks dengan efek glow setelah animasi mengetik selesai
-        typingText.addEventListener('animationend', (event) => {
-            if (event.animationName === "typing") {
-                // Setelah animasi mengetik selesai, tambahkan efek glow
-                typingText.classList.add('full-text');
-            }
+        // Apply typing animation sequentially with a delay
+        const title = document.getElementById('title');
+        const paragraph = document.getElementById('paragraph');
+        const sequences = document.querySelectorAll('.sequence');
+        const linkText = document.getElementById('link-text');
+        
+        const titleDuration = title.textContent.length * 0.1; // 0.1 seconds per character
+        const paragraphDuration = paragraph.textContent.length * 0.1; // 0.1 seconds per character
+        
+        // Animate title
+        startTyping(title, 0, titleDuration);
+
+        // Animate paragraph after title
+        startTyping(paragraph, titleDuration * 1000 + 1000, paragraphDuration);
+
+        // Animate sequences after paragraph
+        sequences.forEach((sequence, index) => {
+            const sequenceDuration = sequence.textContent.length * 0.1; // 0.1 seconds per character
+            const delay = titleDuration * 1000 + paragraphDuration * 1000 + 2000 + (index * (sequenceDuration * 1000 + 500)); // Delay for each sequence
+            startTyping(sequence, delay, sequenceDuration);
         });
+
+        // Animate link text after all sequences
+        const linkTextDuration = linkText.textContent.length * 0.1; // 0.1 seconds per character
+        const linkTextDelay = titleDuration * 1000 + paragraphDuration * 1000 + 2000 + (sequences.length * 1000) + 2000; // Total delay for link text
+        startTyping(linkText, linkTextDelay, linkTextDuration);
     </script>
 </body>
 </html>
