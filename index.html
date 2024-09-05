@@ -1,191 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Typing Effect - W-Runk Psugihan</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Berkeley+Mono:wght@400;700&display=swap');
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Berkeley Mono', Courier, monospace;
-            background-color: #000000; /* Background hitam */
-            color: #ffffff; /* Warna teks putih */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            overflow: hidden; /* Menyembunyikan overflow jika ada */
-            position: relative; /* Untuk positioning teks link di pojok kanan bawah */
-        }
-
-        .container {
-            width: 100%;
-            max-width: 800px;
-            position: relative; /* Memastikan anak-anak diposisikan relatif terhadap ini */
-        }
-
-        .typing-text, .sequence, .link-text {
-            white-space: nowrap;
-            overflow: hidden;
-            font-size: 2rem; /* Ukuran font */
-            margin: 20px 0;
-            text-shadow: 0 0 10px #ffffff; /* Efek glow */
-        }
-
-        .paragraph {
-            font-size: 1.2rem; /* Ukuran font untuk paragraf */
-            white-space: normal;
-            width: fit-content; /* Menyesuaikan lebar dengan teks */
-            display: inline-block; /* Menyusun paragraf sebagai blok */
-            overflow: hidden; /* Menyembunyikan overflow jika ada */
-            opacity: 0; /* Awalnya teks tidak terlihat */
-        }
-
-        .sequence {
-            font-size: 1rem; /* Ukuran font untuk teks 1-5 */
-        }
-
-        .link-text {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            font-size: 1rem; /* Ukuran font untuk link */
-            margin: 0;
-        }
-
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        @keyframes blink-cursor {
-            50% { border-right-color: transparent; }
-        }
-
-        .typing-text {
-            border-right: 2px solid #ffffff; /* Garis kedip di akhir teks */
-            width: 0; /* Awalnya width 0 */
-            opacity: 0; /* Awalnya teks tidak terlihat */
-            animation: blink-cursor 0.65s step-end infinite;
-        }
-
-        .typing-text.typing {
-            animation: typing 1.5s steps(40, end) forwards;
-        }
-
-        .typing-text.done {
-            border-right: none; /* Menghilangkan kursor kedip setelah selesai */
-            animation: none; /* Menghentikan animasi setelah selesai */
-            opacity: 1; /* Teks terlihat setelah selesai */
-        }
-
-        .text-left {
-            text-align: left;
-            display: block;
-            width: 100%;
-        }
-
-
-        @media (max-width: 600px) {
-            .typing-text, .paragraph, .sequence, .link-text {
-                font-size: 1.5rem; /* Menyesuaikan ukuran font untuk layar kecil */
-            }
-        }
-
-        .audio-controls {
-            position:center;
-            bottom: 20px;
-            left: 20px;
-        }
-
-        .audio-controls img {
-            width: 40px; /* Ukuran logo */
-            height: 40px; /* Ukuran logo */
-            margin-top: 10px; /* Jarak antara logo dan tombol */
-            margin-top: -1110px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centered Large Images with Embedded Map</title>
+  <!-- Bootstrap CSS -->
+  <title>Centered Large Images with Glow Effect and Icons</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+     body {
+      background-color: #000; /* Mengubah background menjadi hitam */
+      color: #fff; /* Mengubah warna teks menjadi putih agar kontras dengan background hitam */
+    }
+    .full-image {
+      width: 100%;
+      max-width: 800px;
+      height: 500px;
+      margin: 20px auto;
+      display: block;
+      transition: transform 0.3s ease; /* Efek transisi saat hover */
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* Cahaya awal */
+    }
+    .full-image:hover {
+      transform: scale(1.02); /* Efek zoom saat hover */
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.4); /* Efek glow */  
+    }
+    .image-box img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain; /* Menjaga rasio gambar */
+    }
+    .maps-section {
+      text-align: center;
+      margin: 50px 0;   
+    }
+    .maps-embed {
+      width: 100%;
+      height: 450px;
+      border: 0;
+    }
+    .footer {
+      background-color: #f8f9fa;
+      padding: 20px;
+      text-align: center;
+    }
+    .footer a {
+      margin: 0 15px;
+      color: #000;
+      text-decoration: none;
+      font-size: 18px;
+    }
+    .footer a:hover {
+      color: #007bff;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1 id="title" class="typing-text">Selamat datang di W-Runk Psugihan</h1>
-        <p id="paragraph" class="paragraph">Ini adalah paragraf yang menjelaskan lebih lanjut tentang W-Runk Psugihan.</p>
-        <div id="sequence-container" class="text-left">
-            <div class="typing-text sequence">1. Jika voucher ditukar pada 23 September 2024 calim diskon 50%</div>
-            <div class="typing-text sequence">2. Jika voucher ditukar pada 24 - 26 September 2024 calim diskon 20%</div>
-            <div class="typing-text sequence">3. Jika voucher ditukar pada 27 - 30 September 2024 calim diskon 10%</div>
-            <div class="typing-text sequence">4. Wajib Follow akun Instagram W.Runk.id</div>
-            <div class="typing-text sequence">5. Vocher Tidak berlaku untuk pembelian paket</div>
-            <div class="typing-text sequence">6. Vocher dapat ditukar dengan 1 produk makanan saja</div>
-         <!-- Elemen audio untuk musik -->
-    <audio id="background-music" src="samsul.mp3" preload="auto" loop></audio>
-
-    <div class="audio-controls">
-        <img src="pngwing.com.png" alt="Logo Music">
-        <button onclick="toggleMusic()">Play/Pause</button>
-    </div>
-
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">WELCOME TO W-RUNK PSUGIHAN</h1>
     
+    <!-- Gambar 1 -->
+    <img src="https://via.placeholder.com/800x600" alt="Large Image 1" class="full-image img-fluid">
+    
+    <!-- Gambar 2 -->
+    <img src="https://via.placeholder.com/800x600" alt="Large Image 2" class="full-image img-fluid">
 
-    <script>
-        // Function to trigger typing animation with auto width
-        function startTyping(textElement, delay, duration) {
-            setTimeout(() => {
-                textElement.style.opacity = 1; // Show the text
-                textElement.style.width = 'auto'; // Ensure width adjusts to content
-                textElement.style.animation = `typing ${duration}s steps(${textElement.textContent.length}, end) forwards, blink-cursor 0.75s step-end infinite`;
-                
-                // Remove the blinking cursor after typing animation is done
-                textElement.addEventListener('animationend', () => {
-                    textElement.classList.add('done'); // Remove cursor and stop animation
-                });
-            }, delay);
-        }
+    <!-- Maps Section -->
+    <div class="maps-section">
+      <h2>Find Us on the Map</h2>
+      <p>Our location is easy to find. See the map below or click for directions.</p>
+      
+      <!-- Embedded Google Map -->
+      <iframe 
+        class="maps-embed"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d987.8950534269701!2d112.6110726695271!3d-7.938834071253213!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78820c4593907d%3A0x74b9ba974bd82cb1!2sJl.%20Bunga%20Vinolia%20No.11a%2C%20Dinoyo%2C%20Kec.%20Lowokwaru%2C%20Kota%20Malang%2C%20Jawa%20Timur%2065144!5e0!3m2!1sid!2sid!4v1725552243261!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    
+  </div>
 
-        // Apply typing animation sequentially with a delay
-        const title = document.getElementById('title');
-        const paragraph = document.getElementById('paragraph');
-        const sequences = document.querySelectorAll('.sequence');
-        const linkText = document.getElementById('link-text');
-        const audio = document.getElementById('background-music');
-        
-        const titleDuration = title.textContent.length * 0.1; // 0.1 seconds per character
-        const paragraphDuration = paragraph.textContent.length * 0.1; // 0.1 seconds per character
-        
-        // Animate title
-        startTyping(title, 0, titleDuration);
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Connect with us:</p>
+    <a href="https://wa.me/6289699543319" target="_blank"><i class="fab fa-whatsapp"></i>
+    <a href="https://instagram.com/w.runk.id" target="_blank"><i class="fab fa-instagram"></i>
+    <a href="https://maps.app.goo.gl/67QPDvYE5ZDFbnQb8" target="_blank"><i class="fas fa-map-marker-alt"></i>
+  </footer>
 
-        // Animate paragraph after title
-        startTyping(paragraph, titleDuration * 1000 + 1000, paragraphDuration);
-
-        // Animate sequences after paragraph
-        sequences.forEach((sequence, index) => {
-            const sequenceDuration = sequence.textContent.length * 0.1; // 0.1 seconds per character
-            const delay = titleDuration * 1000 + paragraphDuration * 1000 + 2000 + (index * (sequenceDuration * 1000 + 500)); // Delay for each sequence
-            startTyping(sequence, delay, sequenceDuration);
-        });
-
-        // Animate link text after all sequences
-        const linkTextDuration = linkText.textContent.length * 0.1; // 0.1 seconds per character
-        const linkTextDelay = titleDuration * 1000 + paragraphDuration * 1000 + 2000 + (sequences.length * 1000) + 2000; // Total delay for link text
-        startTyping(linkText, linkTextDelay, linkTextDuration);
-        // Function to toggle audio playback
-        function toggleMusic() {
-            if (audio.paused) {
-                audio.play();
-            } else {
-                audio.pause();
-            }
-        }
-        
-        // Optionally, start playing the music automatically
-        audio.play();
-    </script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
